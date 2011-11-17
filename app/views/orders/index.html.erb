@@ -1,0 +1,77 @@
+<ul class="message warning no-margin" style="display: none;">
+	<li></li>
+</ul>
+<ul class="message success no-margin" style="display: none;">
+	<li></li>
+</ul>
+<section class="grid_8">
+			<div class="block-border"><form action="" method="post" id="table_form" class="block-content form">
+				
+				<h1>Meus Pedidos</h1>
+				
+				<div class="block-controls">
+					
+					<ul class="controls-buttons">
+						
+					</ul>
+					
+				</div>
+			
+				<div class="no-margin"><table width="100%" cellspacing="0" class="table">
+				
+					<thead>
+						<tr>
+							
+							<th scope="col">Status</th>
+							<th>Valor</th>
+							
+							<th scope="col">
+								
+								Data do pedido
+							</th>
+							
+							<th class="table-actions" scope="col">Ações</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<% @orders.each do |v| %>
+						<tr id="<%= dom_id v %>">		
+							
+							<td><% if v.status_id == "1" %>Aberto<% elsif v.status_id == "2" %>Em produção<% elsif v.status_id == "3" %>Finalizado<% else %>Cancelado<% end %></td>
+							<td>
+								R$ <%= v.order_products.total(v.order_products).contabil %>
+									
+							</td>
+							
+							<td><%= v.created_at.strftime("%m de %B de %Y - %H:%M") %></td>
+							
+							<td class="table-actions">
+								<%= link_to "Detalhes", show_order_path(v.id), :remote => true, :id => "cancel_order", :class => "big-button" %>
+								
+								<% if v.status_id == "1" %>
+									<%= link_to "Enviar para produção", finalize_or_cancel_order_path(v.id, 2), :remote => true, :id => "finalize_order", :class => "big-button" %>
+								<% end %>
+								<% if Time.now < v.created_at + 10.minutes && v.status_id != "4" %>	
+									<%= link_to "Cancelar", finalize_or_cancel_order_path(v.id, 4), :remote => true, :id => "cancel_order", :class => "big-button" %>
+								<% end %>
+							</td>
+						</tr>
+						
+						<% end %>
+						
+					</tbody>
+				
+				</table></div>
+				
+				<ul class="message no-margin">
+					<li>Total de Pedidos: <%= @orders.count %></li>
+				</ul>
+				
+				
+					
+			</form></div>
+		</section>
+		<section class="grid_4">
+			<%= render "itens" %>
+		</section>

@@ -1,0 +1,15 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+#login-block, #message, #cad-block {
+	width:600px;
+	margin:0 auto;
+}
+#message {
+	padding-top: 30px;
+}
+#login-block, #cad-block {
+	margin-top: 30px;
+	padding-bottom: 150px;
+}

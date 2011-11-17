@@ -1,0 +1,5 @@
+$(".message").html("");
+<% @user.errors.full_messages.each do |msg| %>
+	$(".message").append(" <%= msg %> <br/></br/>");
+<% end %>
+$(".message").show();

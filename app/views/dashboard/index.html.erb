@@ -1,0 +1,79 @@
+<section class="grid_8">
+			<div class="block-border"><div class="block-content">
+				<!-- We could put the menu inside a H1, but to get valid syntax we'll use a wrapper -->
+				<div class="h1 with-menu">
+					<h1>Produtos</h1>					
+				</div>
+			
+				<div class="block-controls">
+					
+					<ul class="controls-tabs js-tabs same-height with-children-tip">
+						<% @groups.each do |g| %>
+							<li class="" title="<%= g.name %>"><a href="#<%= g.name.downcase %>" title="<%= g.name %>"><%= image_tag g.icon_file_name, :title => g.name, :width => 24, :height => 24 %></a></li>
+						<% end %>
+					</ul>
+					
+				</div>
+				<% @groups.each do |g| %>
+					<% if g.id == 2 %>
+						<div style=" display: inline-block;" id="<%= g.name.downcase %>" class="with-margin">
+						<h2><%= g.name %></h2>
+						<ul class="">
+						<% g.products.each do |p| %>
+						<%= form_for [@orders, @product] do |r| %>
+							<li class="product pizza">
+								<%= image_tag p.photo_file_name, :title => p.name, :width => 100 %>
+								
+								<p class="name_product"><%= p.name %></p>
+								<%= select :product, :size_id, @sizes.collect {|size| [ "#{size.name} - R$ #{size.value.contabil}", size.id ] } %>
+								<div class="flavors">
+									<% @flavors.each do |f| %>
+										<%= check_box_tag 'product[flavor_id][]', f.id %>										
+										<%= f.name %> - <em><%= f.additional.contabil if f.additional %></em><br />
+										
+									<% end %>	
+								</div>
+								<%= hidden_field_tag "product[product_id]", p.id %>
+								<span class="buttons">	
+									<%= r.submit "Adicionar ao pedido", :class => "big-button"%>								
+									
+								</span>	
+							</li>	
+							<% end %>
+						<% end %>
+						</ul> 
+					</div>
+					<%else%>
+					<div style=" display: inline-block;" id="<%= g.name.downcase %>" class="with-margin">
+						<h2><%= g.name %></h2>
+						<ul class="">
+						<% g.products.each do |p| %>
+							<li class="product">
+								<%= image_tag p.photo_file_name, :title => p.name, :width => 100 %>
+								<p class="price">R$ <%= p.price.contabil %></p>
+								<p class="name_product"><%= p.name %></p>
+								<p class="description<%= p.id%>" style="display: none; float: left; margin-top: 10px;"><%= p.description %></p>
+								<span class="buttons">
+									<%= button_tag "" "Detalhes", :class => "show_description", :id => "description#{p.id}" %>
+									<%= link_to "Adicionar ao pedido", new_order_path(p.id), :class => "big-button" %>
+								</span>	
+							</li>	
+						<% end %>
+						</ul> 
+					</div>
+					<%end%>
+				<% end %>
+				<div style="height: 435px; display: none;" id="outros" class="with-margin">
+					<p>Outros</p>
+				</div>		
+				
+				
+				<ul class="message no-margin">
+					<li>Faça seu pedido,<strong>é muito fácil</strong>, escolha os produtos.</li>
+				</ul>
+				
+			</div></div>
+		</section>
+		<section class="grid_4">
+			<%= render "pedido" %>
+		</section>

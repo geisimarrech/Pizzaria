@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  order_id: 1
+  product_id: 1
+  amount: 1
+  observation: MyText
+
+two:
+  order_id: 1
+  product_id: 1
+  amount: 1
+  observation: MyText

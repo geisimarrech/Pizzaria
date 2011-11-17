@@ -1,0 +1,103 @@
+<section id="message">
+		<div class="block-border"><div class="block-content no-title dark-bg">
+			<p class="mini-infos">Não tem cadastro? <b><a href="javascript:;" title="" class="no_cad">Clique aqui</a></b></p>
+		</div></div>
+	</section>
+	
+	<section id="login-block">
+		<div class="block-border"><div class="block-content">
+			
+			<!--
+			IE7 compatibility: if you want to remove the <h1>,
+			add style="zoom:1" to the above .block-content div
+			-->
+			
+			<div class="block-header">Faça seu login</div>
+			<p style="display: none;" class="message warning no-margin">Please enter your user name</p>
+				
+			
+			<%= form_for @user_session, :url => {:action => "create"}, :html => {:class => "form with-margin", :id => "login-form"}, :remote => true do |f| %>
+  				<p class="inline-small-label">
+  					<label for="email"><span class="big">E-mail</span></label>
+  					<%= f.text_field :email, :class => "full-width" %>
+  				</p>
+  				<p class="inline-small-label">
+  					<label for="password"><span class="big">Senha</span></label>
+  					<%= f.password_field :password, :class => "full-width" %>
+  				</p>
+  				<%= button_tag "Logar", :class => "float-right" %>
+  				<p class="input-height">
+					<input style="display: none;" name="keep-logged" id="keep-logged" value="1" class="mini-switch" checked="checked" type="checkbox"><span class="mini-switch-replace"></span>
+					<label for="keep-logged" class="inline">Manter-me logado</label>
+				</p>
+			<% end %>
+			
+			
+			<%= form_for @user_session, :url => {:action => "recover_password"}, :html => {:class => "form with-margin", :id => "password-recovery"}, :remote => true do |f| %>
+				<fieldset class="grey-bg no-margin collapsed">
+					<legend><a href="javascript:;">Esqueceu a senha?</a></legend>
+					<p class="input-with-button">
+						<label for="recovery-mail">Digite seu e-mail</label>
+						<input name="email" id="recovery-mail" type="text">
+						<%= button_tag "Enviar" %>
+					</p>
+				</fieldset>
+			<% end %>
+		</div></div>
+	</section>
+	<section id="cad-block" style="display: none; bottom: -200px;">
+		<div class="block-border" style="padding-bottom: 10px"><div class="block-content" style="padding-bottom: 50px">
+			
+			<!--
+			IE7 compatibility: if you want to remove the <h1>,
+			add style="zoom:1" to the above .block-content div
+			-->
+			
+			<div class="block-header">Faça seu cadastro</div>
+			<p style="display: none;" class="message warning no-margin"></p>
+				
+			<%= form_for @user, :url => {:controller => "users", :action => "create"}, :html => {:class => "form with-margin"}, :remote => true do |f| %>
+			  
+			  <p class="inline-small-label">
+			    <label for="name"><span class="big">Nome:</span></label>
+			    <%= f.text_field :name, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for="address"><span class="big">Endereço:</span></label>
+			    <%= f.text_field :address, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for="bairro"><span class="big">Bairro:</span></label>
+			    <%= f.text_field :bairro, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for="city"><span class="big">Cidade:</span></label>
+			    <%= f.text_field :city, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for="phone"><span class="big">Telefone:</span></label>
+			    <%= f.text_field :phone, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for="email"><span class="big">E-mail:</span></label>
+			    <%= f.text_field :email, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for="login"><span class="big">Login:</span></label>
+			    <%= f.text_field :login, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for="password"><span class="big">Senha:</span></label>
+			    <%= f.password_field :password, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for=":password_confirmation"><span class="big">Confirme a Senha:</span></label>
+			    <%= f.password_field :password_confirmation, :class => "full-width" %>
+			  </p>
+			  <%= button_tag "Cadastrar", :class => "float-right" %>
+			<% end %>
+			
+			
+			
+		</div></div>
+	</section>

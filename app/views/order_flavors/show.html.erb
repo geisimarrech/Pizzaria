@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Flavor:</b>
+  <%= @order_flavor.flavor_id %>
+</p>
+
+<p>
+  <b>Order product:</b>
+  <%= @order_flavor.order_product_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_order_flavor_path(@order_flavor) %> |
+<%= link_to 'Back', order_flavors_path %>

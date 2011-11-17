@@ -1,0 +1,59 @@
+<ul class="message success no-margin" style="display: none;">
+	<li></li>
+</ul>
+<section class="grid_8">
+			<div class="block-border"><div class="block-content">
+				<!-- We could put the menu inside a H1, but to get valid syntax we'll use a wrapper -->
+				<div class="h1 with-menu">
+					<h1>Meu Cadastro</h1>					
+				</div>
+			
+			
+				
+				<div class="with-margin">
+					<%= form_for @user, :url => {:controller => "users", :action => "update"}, :html => {:class => "form with-margin"}, :remote => true do |f| %>
+			  
+			  <p class="inline-small-label">
+			    <label for="name"><span class="big">Nome:</span></label>
+			    <%= f.text_field :name, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for="address"><span class="big">Endereço:</span></label>
+			    <%= f.text_field :address, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for="bairro"><span class="big">Bairro:</span></label>
+			    <%= f.text_field :bairro, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for="city"><span class="big">Cidade:</span></label>
+			    <%= f.text_field :city, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for="phone"><span class="big">Telefone:</span></label>
+			    <%= f.text_field :phone, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for="email"><span class="big">E-mail:</span></label>
+			    <%= f.text_field :email, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for="login"><span class="big">Login:</span></label>
+			    <%= f.text_field :login, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for="password"><span class="big">Senha:</span></label>
+			    <%= f.password_field :password, :class => "full-width" %>
+			  </p>
+			  <p class="inline-small-label">
+			    <label for=":password_confirmation"><span class="big">Confirme a Senha:</span></label>
+			    <%= f.password_field :password_confirmation, :class => "full-width" %>
+			  </p>
+			  <%= button_tag "Atualizar", :class => "float-right" %>
+			<% end %>
+				</div>		
+				
+
+				
+			</div></div>
+		</section>

@@ -1,0 +1,42 @@
+<div class="block-border"><div class="block-content">
+				<h1>Itens do pedido</h1>
+				
+				<ul class="extended-list no-margin icon-user">
+					<% if @itens %>
+						<% @itens.each do |v| %>
+						<li id="<%= dom_id v %>">
+							<div>
+								<span class="icon"><%= image_tag v.product.photo_file_name, :title => v.product.name, :width =>50 %></span>
+								<h3><%= v.product.name %></h3><br>
+								<% if v.product_id == 2 %>
+									<% v.order_flavors.each do |s|%>
+										<%= s.flavor.name.capitalize %>,
+									<% end %>
+								<% end %>
+								
+							</div>
+							
+							
+							<ul class="extended-options">
+								<li>
+									Quantidade: <strong><%= v.amount %></strong><br>
+									
+								</li>
+								<li>
+									Valor: <strong><%= (v.product.price * v.amount).contabil %></strong><br>
+									
+								</li>
+							</ul>
+						</li>
+						
+						<% end %>
+					<% end %>
+				</ul>
+				
+				<ul class="message no-margin">
+					<% if @itens %>
+						<li><%= @itens.count %> itens no seu pedido</li>
+						<li>Valor total: <h2>R$ <%= OrderProduct.total(@itens).contabil %></h2></li>
+					<% end %>
+				</ul>
+			</div></div>
