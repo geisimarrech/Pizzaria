@@ -1,4 +1,4 @@
-# -*- encoding : utf-8 -*-
+
 class RecoverPassword < ActionMailer::Base
   
   def new_email(user)

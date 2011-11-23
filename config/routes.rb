@@ -13,6 +13,8 @@ Pizzaria::Application.routes.draw do
   match 'login' => "user_sessions#new",      :as => :login
   match 'logout' => "user_sessions#destroy", :as => :logout
   
+  match 'help' => "dashboard#help", :as => :help
+  
   match 'recover_password' => "user_sessions#recover_password", :as => :recover_password
 
   # The priority is based upon order of creation:

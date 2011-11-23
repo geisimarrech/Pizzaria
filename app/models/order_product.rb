@@ -8,7 +8,7 @@ class OrderProduct < ActiveRecord::Base
   def self.add_products(order, product, size=0)
     current_item = OrderProduct.find(:first, :conditions => { :order_id => order.id, :product_id => product })    
     
-    if current_item && product != "2"
+    if current_item && product != "8"
       qnt = current_item.amount + 1
       current_item.update_attributes(:amount => qnt)
     else
@@ -21,7 +21,7 @@ class OrderProduct < ActiveRecord::Base
   def self.total(itens)
     @total = 0
     itens.each do |v|
-      if v.product_id == 2
+      if v.product_id == 8
         @total = (@total + v.size.value) * v.amount
       else
         @total = (@total + v.product.price) * v.amount

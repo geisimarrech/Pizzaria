@@ -9,7 +9,12 @@ class DashboardController < ApplicationController
     @product = Product.new 
     if @order
       @itens = OrderProduct.where(:order_id => @order.id)
+      puts "--------------------------------------#{@itens.inspect}"
     end 
+  end
+  
+  def help
+    
   end
   
   
@@ -17,7 +22,7 @@ class DashboardController < ApplicationController
   def load_variables
     @groups = Group.all
     @sizes = Size.all
-    @order = Order.find(:first, :conditions => { :status_id => 1, :user_id => current_user.id })
+    @order = Order.first(:conditions => ["status_id = ? AND user_id = ? ", 1, current_user.id]) 
     @flavors = Flavor.all
   end
   

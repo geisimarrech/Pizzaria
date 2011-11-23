@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   def new
  
       @order = Order.new
-      @order.user_id = current_user
+      @order.user_id = current_user.id
       @order.status_id = 1
       
       product = params[:id]
@@ -61,7 +61,7 @@ class OrdersController < ApplicationController
   def order_products
     if params[:product]
       @order = Order.new
-      @order.user_id = current_user
+      @order.user_id = current_user.id
       @order.status_id = 1
       product = params[:product][:product_id]
       size = params[:product][:size_id]

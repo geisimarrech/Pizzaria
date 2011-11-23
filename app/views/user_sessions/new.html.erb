@@ -27,8 +27,9 @@
   				</p>
   				<%= button_tag "Logar", :class => "float-right" %>
   				<p class="input-height">
-					<input style="display: none;" name="keep-logged" id="keep-logged" value="1" class="mini-switch" checked="checked" type="checkbox"><span class="mini-switch-replace"></span>
-					<label for="keep-logged" class="inline">Manter-me logado</label>
+  					<%= f.check_box :remember_me, :class => "mini-switch", :style => "display:none" %>
+					<span class="mini-switch-replace"></span>
+					<%= f.label :remember_me, "Lembrar-me", :class => "inline"%>
 				</p>
 			<% end %>
 			
@@ -67,8 +68,8 @@
 			    <%= f.text_field :address, :class => "full-width" %>
 			  </p>
 			  <p class="inline-small-label">
-			    <label for="bairro"><span class="big">Bairro:</span></label>
-			    <%= f.text_field :bairro, :class => "full-width" %>
+			    <label for="neighborhood"><span class="big">Bairro:</span></label>
+			    <%= f.text_field :neighborhood, :class => "full-width" %>
 			  </p>
 			  <p class="inline-small-label">
 			    <label for="city"><span class="big">Cidade:</span></label>

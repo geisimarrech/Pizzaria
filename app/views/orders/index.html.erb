@@ -38,7 +38,7 @@
 						<% @orders.each do |v| %>
 						<tr id="<%= dom_id v %>">		
 							
-							<td><% if v.status_id == "1" %>Aberto<% elsif v.status_id == "2" %>Em produção<% elsif v.status_id == "3" %>Finalizado<% else %>Cancelado<% end %></td>
+							<td><%= v.status.name %></td>
 							<td>
 								R$ <%= v.order_products.total(v.order_products).contabil %>
 									
@@ -49,10 +49,10 @@
 							<td class="table-actions">
 								<%= link_to "Detalhes", show_order_path(v.id), :remote => true, :id => "cancel_order", :class => "big-button" %>
 								
-								<% if v.status_id == "1" %>
+								<% if v.status_id == 1 %>
 									<%= link_to "Enviar para produção", finalize_or_cancel_order_path(v.id, 2), :remote => true, :id => "finalize_order", :class => "big-button" %>
 								<% end %>
-								<% if Time.now < v.created_at + 10.minutes && v.status_id != "4" %>	
+								<% if Time.now < v.created_at + 10.minutes && v.status_id != 4 %>	
 									<%= link_to "Cancelar", finalize_or_cancel_order_path(v.id, 4), :remote => true, :id => "cancel_order", :class => "big-button" %>
 								<% end %>
 							</td>

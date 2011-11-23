@@ -8,7 +8,7 @@
 							<div>
 								<span class="icon"><%= image_tag v.product.photo_file_name, :title => v.product.name, :width =>50 %></span>
 								<h3><%= v.product.name %></h3><br>
-								<% if v.product_id == 2 %>
+								<% if v.product_id == 8 %>
 									<% v.order_flavors.each do |s|%>
 										<%= s.flavor.name.capitalize %>,
 									<% end %>
@@ -23,7 +23,7 @@
 									
 								</li>
 								<li>
-									Valor: <strong><%= (v.product.price * v.amount).contabil %></strong><br>
+									Valor: <strong><% if v.product_id == 8 %><%= (v.size.value * v.amount).contabil %><%else%><%= (v.product.price * v.amount).contabil %><%end%></strong><br>
 									
 								</li>
 							</ul>
