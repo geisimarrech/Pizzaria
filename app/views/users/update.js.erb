@@ -1,2 +1,9 @@
-$(".success").find("li").html("Cadastro atualizado com sucesso");
-$(".success").fadeIn();
+<% if flash[:notice]%>
+	$(".success").find("li").html("<%= flash[:notice]%>");
+	$(".success").fadeIn();
+<%else%>
+    <% @user.errors.each do |e| %>
+		$(".error").find("li").html("<%= e %>");
+	<% end %>	
+	$(".error").fadeIn();
+<%end%>

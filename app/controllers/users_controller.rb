@@ -18,13 +18,15 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
   end
   
   def update
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
     if @user.update_attributes(params[:user])
       flash[:notice] = "Cadastro atualizado com sucesso."
+    else
+      @user.errors
     end
     respond_with @user 
   end
