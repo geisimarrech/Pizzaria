@@ -5,14 +5,14 @@ class OrderProduct < ActiveRecord::Base
   has_many :order_flavors, :foreign_key => "order_product_id"
   
   
-  def self.add_products(order, product, size=0)
+  def self.add_products(order, product, size)
     current_item = OrderProduct.find(:first, :conditions => { :order_id => order.id, :product_id => product })    
     
     if current_item && product != "8"
       qnt = current_item.amount + 1
       current_item.update_attributes(:amount => qnt)
     else
-      @order_product = self.new(:order_id => order.id, :product_id => product, :amount => 1, :size_id => size)
+      @order_product = self.new(:order_id => order.id, :product_id => product, :amount => 1, :size_id => size.blank? ? 0 :size)
       @order_product.save
     end
     

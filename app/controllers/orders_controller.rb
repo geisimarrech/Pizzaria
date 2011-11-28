@@ -7,17 +7,19 @@ class OrdersController < ApplicationController
       @order.user_id = current_user.id
       @order.status_id = 1
       
+      size= params[:size].blank? ? 0 : params[:size]
+      
       product = params[:id]
       
       @orders = Order.exist_order(current_user.id, 1)
       
       if @orders
-        OrderProduct.add_products(@orders,product)
+        OrderProduct.add_products(@orders,product, size)
         flash[:notice] = "Seu produto foi adicionado em pedido existente"
         redirect_to root_path
       else
           @order.save
-          OrderProduct.add_products(@order,product)
+          OrderProduct.add_products(@order,product, size)
           flash[:notice] = "Produto adicionado"
           redirect_to root_path
       end
@@ -42,7 +44,7 @@ class OrdersController < ApplicationController
     
     @order = Order.first(:conditions => {:id => id})
     if @order.update_attributes(:status_id => action)
-      if action == "4"
+      if action == "5"
         flash[:notice] = "Pedido cancelado com sucesso."
       else
         flash[:notice] = "Pedido enviado para produção com sucesso, aguarde a entrega."

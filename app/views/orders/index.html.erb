@@ -53,7 +53,7 @@
 									<%= link_to "Enviar para produção", finalize_or_cancel_order_path(v.id, 2), :remote => true, :id => "finalize_order", :class => "big-button" %>
 								<% end %>
 								<% if Time.now < v.created_at + 10.minutes && v.status_id != 4 %>	
-									<%= link_to "Cancelar", finalize_or_cancel_order_path(v.id, 4), :remote => true, :id => "cancel_order", :class => "big-button" %>
+									<%= link_to "Cancelar", finalize_or_cancel_order_path(v.id, 5), :remote => true, :id => "cancel_order", :class => "big-button" %>
 								<% end %>
 							</td>
 						</tr>

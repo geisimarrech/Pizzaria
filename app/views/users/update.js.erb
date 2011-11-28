@@ -4,6 +4,7 @@
 <%else%>
     <% @user.errors.each do |e| %>
 		$(".error").find("li").html("<%= e %>");
-	<% end %>	
+	<% end %>
+	$(".success").fadeOut();	
 	$(".error").fadeIn();
 <%end%>

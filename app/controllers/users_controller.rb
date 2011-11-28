@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
       if @user.save
-        flash[:notice] = "Usuário criado com sucesso."
+        flash[:notice] = "Usuário criado com sucesso."        
       else
         @user.errors
       end

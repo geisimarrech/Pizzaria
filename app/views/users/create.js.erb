@@ -3,3 +3,8 @@ $(".message").html("");
 	$(".message").append(" <%= msg %> <br/></br/>");
 <% end %>
 $(".message").show();
+
+<%if flash[:notice] %>
+	$(".message").html("<%= flash[:notice ]%>");
+	location.href="/"
+<% end %>
